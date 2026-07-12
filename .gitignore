@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+.streamlit/secrets.toml
+
+models/
+qiime2/*.qza
+qiime2/*.qzv
+
+*.tar.gz
+*.fastq
+*.fastq.gz
+*.biom

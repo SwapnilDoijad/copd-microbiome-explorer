@@ -1,0 +1,10 @@
+Metric,Value
+Samples,839.0
+Median input reads,75199.0
+Median filtered reads,65960.0
+Median merged reads,57915.0
+Median non-chimeric reads,56940.0
+Median sequencing depth,56940.0
+Total feature-table reads,63592618.0
+Minimum sequencing depth,69.0
+Maximum sequencing depth,747430.0

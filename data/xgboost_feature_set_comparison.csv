@@ -1,0 +1,4 @@
+Feature_set,Samples,Features,Accuracy,Balanced_accuracy,Precision,Recall,F1_score,Test_ROC_AUC,CV_ROC_AUC_mean,CV_ROC_AUC_std
+serratia_only,248,1,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0
+top5_genera,248,5,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0
+all_374_genera,248,374,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0
