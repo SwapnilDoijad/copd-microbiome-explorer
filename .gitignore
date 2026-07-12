@@ -4,6 +4,7 @@ __pycache__/
 venv/
 .env
 .streamlit/secrets.toml
+qiime2/
 
 models/
 qiime2/*.qza
