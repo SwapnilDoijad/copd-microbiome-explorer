@@ -694,23 +694,23 @@ st.markdown(
     -------------------------------------------------------- */
 
     .stApp {
-        background:
-            radial-gradient(
-                circle at top left,
-                rgba(62, 174, 213, 0.14),
-                transparent 34%
-            ),
-            radial-gradient(
-                circle at top right,
-                rgba(108, 92, 231, 0.12),
-                transparent 34%
-            ),
-            linear-gradient(
-                135deg,
-                #f5fbff 0%,
-                #f8f7ff 50%,
-                #f4fbf7 100%
-            );
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(62, 174, 213, 0.12),
+            transparent 34%
+        ),
+        radial-gradient(
+            circle at top right,
+            rgba(108, 92, 231, 0.12),
+            transparent 34%
+        ),
+        linear-gradient(
+            135deg,
+            #0e1117 0%,
+            #131722 50%,
+            #101820 100%
+        );
     }
 
     .block-container {
