@@ -985,15 +985,15 @@ st.markdown(
     -------------------------------------------------------- */
 
     div[data-testid="stMetric"] {
-        border: 1px solid rgba(73, 126, 156, 0.18);
-        border-radius: 17px;
-        padding: 17px;
-        background: rgba(255, 255, 255, 0.91);
-        box-shadow:
-            0 7px 20px rgba(32, 72, 98, 0.08);
-        transition:
-            transform 0.18s ease,
-            box-shadow 0.18s ease;
+        border: 1px solid rgba(100, 149, 237, 0.25);
+        border-radius: 18px;
+        padding: 18px;
+        background: linear-gradient(
+            135deg,
+            #1b2330,
+            #252f3f
+        );
+        box-shadow: 0 10px 25px rgba(0,0,0,0.35);
     }
 
     div[data-testid="stMetric"]:hover {
@@ -1003,13 +1003,14 @@ st.markdown(
     }
 
     div[data-testid="stMetricLabel"] {
-        font-weight: 800;
-        color: #4a6d82;
+        color: #cbd5e1 !important;
+        font-weight: 700;
     }
-
+    
     div[data-testid="stMetricValue"] {
+        color: white !important;
+        font-size: 2.2rem;
         font-weight: 900;
-        color: #153f5a;
     }
 
     /* --------------------------------------------------------
