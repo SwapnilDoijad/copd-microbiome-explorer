@@ -1,5 +1,6 @@
 streamlit==1.50.0
-pandas
+altair==5.5.0
+pandas==2.3.3
 numpy==1.26.3
-Pillow
-reportlab
+Pillow==11.3.0
+reportlab==5.0.0
