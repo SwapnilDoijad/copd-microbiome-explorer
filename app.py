@@ -726,18 +726,18 @@ st.markdown(
     h1 {
         margin-bottom: 0.25rem;
         font-weight: 850;
-        color: #f5f7fa;
+        color: #123c59;
         letter-spacing: -0.5px;
     }
 
     h2 {
-        color: #e6edf3;
+        color: #1d4f70;
         font-weight: 800;
         margin-top: 1.2rem;
     }
 
     h3 {
-        color: #d5e3ec;
+        color: #2a5f7c;
         font-weight: 750;
     }
 
