@@ -683,145 +683,403 @@ def metric_card(
 # Styling
 # ============================================================
 
+
 st.markdown(
     """
     <style>
 
+    /* --------------------------------------------------------
+       Main application background
+    -------------------------------------------------------- */
+
     .stApp {
-        background: linear-gradient(
-            135deg,
-            #f4fbff 0%,
-            #f7f5ff 50%,
-            #f3fbf7 100%
-        );
+        background:
+            radial-gradient(
+                circle at top left,
+                rgba(62, 174, 213, 0.14),
+                transparent 34%
+            ),
+            radial-gradient(
+                circle at top right,
+                rgba(108, 92, 231, 0.12),
+                transparent 34%
+            ),
+            linear-gradient(
+                135deg,
+                #f5fbff 0%,
+                #f8f7ff 50%,
+                #f4fbf7 100%
+            );
     }
 
     .block-container {
-        padding-top: 1.2rem;
+        padding-top: 1rem;
         padding-bottom: 3rem;
-        max-width: 1550px;
+        max-width: 1580px;
     }
+
+    /* --------------------------------------------------------
+       General typography
+    -------------------------------------------------------- */
 
     h1 {
-        margin-bottom: 0.2rem;
-        font-weight: 800;
-        color: #16324f;
+        margin-bottom: 0.25rem;
+        font-weight: 850;
+        color: #123c59;
+        letter-spacing: -0.5px;
     }
 
-    h2, h3 {
-        color: #234a68;
-        font-weight: 700;
+    h2 {
+        color: #1d4f70;
+        font-weight: 800;
+        margin-top: 1.2rem;
     }
+
+    h3 {
+        color: #2a5f7c;
+        font-weight: 750;
+    }
+
+    /* --------------------------------------------------------
+       Top navigation tabs
+    -------------------------------------------------------- */
 
     div[data-baseweb="tab-list"] {
-        gap: 8px;
-        background-color: rgba(255, 255, 255, 0.78);
-        padding: 10px;
-        border-radius: 16px;
-        box-shadow: 0 4px 16px rgba(30, 70, 100, 0.08);
-        margin-bottom: 22px;
+        gap: 10px;
+        background: rgba(255, 255, 255, 0.92);
+        padding: 12px;
+        border-radius: 18px;
+        box-shadow:
+            0 8px 28px rgba(31, 74, 102, 0.12);
+        margin-top: 18px;
+        margin-bottom: 26px;
         flex-wrap: wrap;
+        border: 1px solid rgba(91, 139, 166, 0.16);
     }
 
     button[data-baseweb="tab"] {
-        background-color: #e7f2f8;
-        border: 1px solid #c7dce8;
-        border-radius: 12px;
-        padding: 11px 15px;
-        min-height: 50px;
-        transition: all 0.25s ease;
+        border-radius: 13px;
+        padding: 12px 17px;
+        min-height: 52px;
+        border: 1px solid rgba(73, 119, 148, 0.22);
+        transition:
+            transform 0.18s ease,
+            box-shadow 0.18s ease,
+            background-color 0.18s ease;
     }
 
     button[data-baseweb="tab"] p {
-        font-size: 16px;
-        font-weight: 750;
-        color: #24445d;
+        font-size: 16px !important;
+        font-weight: 850 !important;
+        color: #173f5a;
         margin: 0;
+        white-space: nowrap;
     }
 
     button[data-baseweb="tab"]:hover {
-        background-color: #d7ebf6;
-        border-color: #7db5d2;
         transform: translateY(-2px);
-        box-shadow: 0 4px 10px rgba(39, 91, 125, 0.15);
+        box-shadow:
+            0 6px 14px rgba(44, 91, 122, 0.18);
+        filter: brightness(0.98);
     }
 
+    /* Different soft colour for each navigation button */
+
+    button[data-baseweb="tab"]:nth-child(1) {
+        background: #e8f3ff;
+    }
+
+    button[data-baseweb="tab"]:nth-child(2) {
+        background: #eafaf2;
+    }
+
+    button[data-baseweb="tab"]:nth-child(3) {
+        background: #fff4df;
+    }
+
+    button[data-baseweb="tab"]:nth-child(4) {
+        background: #f1ecff;
+    }
+
+    button[data-baseweb="tab"]:nth-child(5) {
+        background: #e9f8fa;
+    }
+
+    button[data-baseweb="tab"]:nth-child(6) {
+        background: #fff0ee;
+    }
+
+    button[data-baseweb="tab"]:nth-child(7) {
+        background: #f5ebff;
+    }
+
+    button[data-baseweb="tab"]:nth-child(8) {
+        background: #fff6dc;
+    }
+
+    button[data-baseweb="tab"]:nth-child(9) {
+        background: #e9f8ee;
+    }
+
+    button[data-baseweb="tab"]:nth-child(10) {
+        background: #f1f3f5;
+    }
+
+    /* Selected navigation tab */
+
     button[data-baseweb="tab"][aria-selected="true"] {
-        background: linear-gradient(
-            135deg,
-            #1976a3,
-            #5f63c4
-        );
-        border: 1px solid transparent;
-        box-shadow: 0 5px 14px rgba(55, 89, 160, 0.28);
+        background:
+            linear-gradient(
+                135deg,
+                #1479a8,
+                #665bc7
+            ) !important;
+        border-color: transparent !important;
+        transform: translateY(-2px);
+        box-shadow:
+            0 8px 18px rgba(71, 87, 171, 0.30);
     }
 
     button[data-baseweb="tab"][aria-selected="true"] p {
-        color: white;
-        font-weight: 800;
+        color: white !important;
+        font-weight: 900 !important;
     }
 
     div[data-baseweb="tab-highlight"] {
         display: none;
     }
 
+    /* --------------------------------------------------------
+       Hero section
+    -------------------------------------------------------- */
+
+    .hero-card {
+        background:
+            linear-gradient(
+                120deg,
+                rgba(17, 112, 156, 0.98),
+                rgba(89, 80, 184, 0.94)
+            );
+        border-radius: 24px;
+        padding: 34px 38px;
+        color: white;
+        box-shadow:
+            0 14px 36px rgba(44, 74, 130, 0.22);
+        margin-bottom: 24px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero-card::after {
+        content: "";
+        position: absolute;
+        width: 280px;
+        height: 280px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.08);
+        right: -80px;
+        top: -110px;
+    }
+
+    .hero-title {
+        font-size: 2.25rem;
+        line-height: 1.15;
+        font-weight: 900;
+        margin-bottom: 10px;
+        position: relative;
+        z-index: 2;
+    }
+
+    .hero-subtitle {
+        max-width: 980px;
+        font-size: 1.08rem;
+        line-height: 1.65;
+        opacity: 0.96;
+        position: relative;
+        z-index: 2;
+    }
+
+    .hero-tag {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.17);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        border-radius: 999px;
+        padding: 6px 12px;
+        margin-right: 7px;
+        margin-top: 14px;
+        font-size: 0.88rem;
+        font-weight: 750;
+        position: relative;
+        z-index: 2;
+    }
+
+    /* --------------------------------------------------------
+       Information cards
+    -------------------------------------------------------- */
+
+    .info-card {
+        background: rgba(255, 255, 255, 0.91);
+        border: 1px solid rgba(78, 127, 155, 0.16);
+        border-radius: 18px;
+        padding: 20px 22px;
+        min-height: 180px;
+        box-shadow:
+            0 7px 20px rgba(37, 76, 102, 0.08);
+        margin-bottom: 12px;
+    }
+
+    .info-card-title {
+        font-size: 1.08rem;
+        font-weight: 850;
+        color: #174c6b;
+        margin-bottom: 8px;
+    }
+
+    .info-card-text {
+        font-size: 0.97rem;
+        color: #486778;
+        line-height: 1.55;
+    }
+
+    /* --------------------------------------------------------
+       Workflow
+    -------------------------------------------------------- */
+
+    .workflow-wrapper {
+        background: rgba(255, 255, 255, 0.88);
+        border-radius: 18px;
+        padding: 20px;
+        border: 1px solid rgba(70, 117, 145, 0.15);
+        box-shadow:
+            0 6px 18px rgba(35, 74, 100, 0.07);
+        margin-bottom: 20px;
+    }
+
+    .workflow-step {
+        display: inline-block;
+        background:
+            linear-gradient(
+                135deg,
+                #e8f5fb,
+                #eeeafd
+            );
+        border: 1px solid rgba(85, 121, 164, 0.18);
+        border-radius: 999px;
+        padding: 9px 14px;
+        margin: 5px 4px;
+        font-size: 0.91rem;
+        font-weight: 760;
+        color: #214e69;
+    }
+
+    .workflow-arrow {
+        color: #6a75a7;
+        font-weight: 900;
+        padding: 0 2px;
+    }
+
+    /* --------------------------------------------------------
+       Metrics
+    -------------------------------------------------------- */
+
     div[data-testid="stMetric"] {
-        border: 1px solid rgba(80, 120, 145, 0.18);
-        border-radius: 14px;
-        padding: 16px;
-        background: rgba(255, 255, 255, 0.84);
-        box-shadow: 0 4px 14px rgba(30, 70, 100, 0.07);
+        border: 1px solid rgba(73, 126, 156, 0.18);
+        border-radius: 17px;
+        padding: 17px;
+        background: rgba(255, 255, 255, 0.91);
+        box-shadow:
+            0 7px 20px rgba(32, 72, 98, 0.08);
+        transition:
+            transform 0.18s ease,
+            box-shadow 0.18s ease;
+    }
+
+    div[data-testid="stMetric"]:hover {
+        transform: translateY(-3px);
+        box-shadow:
+            0 10px 24px rgba(32, 72, 98, 0.13);
     }
 
     div[data-testid="stMetricLabel"] {
-        font-weight: 700;
-        color: #46677d;
+        font-weight: 800;
+        color: #4a6d82;
     }
 
     div[data-testid="stMetricValue"] {
-        font-weight: 800;
-        color: #153c58;
+        font-weight: 900;
+        color: #153f5a;
     }
+
+    /* --------------------------------------------------------
+       Tables, expanders and images
+    -------------------------------------------------------- */
 
     div[data-testid="stDataFrame"],
     div[data-testid="stExpander"] {
-        background: rgba(255, 255, 255, 0.82);
-        border-radius: 14px;
-        padding: 4px;
-        box-shadow: 0 3px 12px rgba(30, 70, 100, 0.06);
+        background: rgba(255, 255, 255, 0.88);
+        border-radius: 15px;
+        padding: 5px;
+        box-shadow:
+            0 4px 14px rgba(31, 70, 96, 0.07);
     }
 
     div[data-testid="stImage"] {
-        background: rgba(255, 255, 255, 0.84);
-        padding: 10px;
-        border-radius: 14px;
-        box-shadow: 0 4px 14px rgba(30, 70, 100, 0.07);
+        background: rgba(255, 255, 255, 0.91);
+        padding: 11px;
+        border-radius: 16px;
+        box-shadow:
+            0 6px 18px rgba(31, 70, 96, 0.08);
     }
 
+    /* --------------------------------------------------------
+       Download buttons
+    -------------------------------------------------------- */
+
     .stDownloadButton > button {
-        background-color: #e3f3ec;
-        color: #175c45;
-        border: 1px solid #9ed5bf;
-        border-radius: 10px;
-        font-weight: 700;
+        background:
+            linear-gradient(
+                135deg,
+                #dff3e9,
+                #e5f4f8
+            );
+        color: #155841;
+        border: 1px solid #9dcfba;
+        border-radius: 11px;
+        font-weight: 800;
+        transition:
+            transform 0.18s ease,
+            box-shadow 0.18s ease;
     }
 
     .stDownloadButton > button:hover {
-        background-color: #ccebdc;
-        color: #124a38;
-        border-color: #66b796;
+        background:
+            linear-gradient(
+                135deg,
+                #c8ebd9,
+                #d4edf4
+            );
+        color: #103f31;
+        border-color: #67b995;
+        transform: translateY(-2px);
+        box-shadow:
+            0 5px 12px rgba(47, 128, 93, 0.16);
     }
+
+    /* --------------------------------------------------------
+       Select boxes and inputs
+    -------------------------------------------------------- */
 
     div[data-baseweb="select"] > div,
     div[data-baseweb="input"] > div {
-        border-radius: 10px;
-        background-color: rgba(255, 255, 255, 0.92);
+        border-radius: 11px;
+        background-color: rgba(255, 255, 255, 0.95);
     }
 
     .small-note {
-        font-size: 0.95rem;
-        color: #557285;
-        opacity: 0.95;
+        font-size: 0.97rem;
+        color: #557486;
+        opacity: 0.96;
+        line-height: 1.55;
     }
 
     </style>
@@ -834,24 +1092,29 @@ st.markdown(
 # Header
 # ============================================================
 
+
 st.title("🫁 COPD Microbiome Explorer")
 
 st.markdown(
     """
-    <div class="small-note">
-    Interactive 16S microbiome analysis using QIIME2, statistical
-    diversity analysis, machine learning, SHAP and LIME.
-    </div>
-    """,
-    unsafe_allow_html=True,
+    **Interactive end-to-end 16S rRNA microbiome analysis**
+
+    This application integrates sequencing quality control, QIIME2,
+    DADA2, taxonomy, microbial diversity, machine learning,
+    SHAP and LIME explainability.
+    """
+)
+
+st.caption(
+    "16S Microbiome · QIIME2 · DADA2 · Machine Learning · "
+    "Explainable AI · Interactive Analytics"
 )
 
 st.warning(
-    "Healthy and COPD samples originated from different BioProjects. "
-    "Observed separation may therefore reflect both biological "
-    "differences and study-specific batch effects."
+    "Important interpretation note: Healthy and COPD samples originated "
+    "from different BioProjects. Observed discrimination may reflect both "
+    "biological differences and study-specific batch effects."
 )
-
 
 # ============================================================
 # Reordered navigation tabs
@@ -880,56 +1143,209 @@ tabs = st.tabs(
 with tabs[0]:
     st.header("Project overview")
 
+    st.write(
+        "This dashboard presents an exploratory comparison of sputum "
+        "microbiome profiles from COPD and healthy cohorts. It combines "
+        "bioinformatics processing, statistical analysis, microbiome "
+        "visualisation, machine learning and explainable AI."
+    )
+
+    st.divider()
+
+    # --------------------------------------------------------
+    # Main project metrics
+    # --------------------------------------------------------
+
     col1, col2, col3, col4, col5 = st.columns(5)
 
-    metric_card(col1, "Samples", "839")
-    metric_card(col2, "COPD", "715")
-    metric_card(col3, "Healthy", "124")
-    metric_card(col4, "ASVs", "5,035")
-    metric_card(col5, "Genus features", "375")
+    metric_card(
+        col1,
+        "Total samples",
+        "839",
+        "All COPD and Healthy samples processed in QIIME2.",
+    )
 
-    st.subheader("Analysis workflow")
+    metric_card(
+        col2,
+        "COPD samples",
+        "715",
+        "Samples belonging to the COPD cohort.",
+    )
+
+    metric_card(
+        col3,
+        "Healthy samples",
+        "124",
+        "Samples belonging to the Healthy cohort.",
+    )
+
+    metric_card(
+        col4,
+        "Detected ASVs",
+        "5,035",
+        "Exact sequence variants generated by DADA2.",
+    )
+
+    metric_card(
+        col5,
+        "Genus features",
+        "375",
+        "Genus-level features used for downstream analysis.",
+    )
+
+    st.divider()
+
+    # --------------------------------------------------------
+    # Project information
+    # --------------------------------------------------------
+
+    st.subheader("Scientific objective")
+
+    st.info(
+        "To identify microbial differences between COPD and healthy "
+        "sputum samples and evaluate whether genus-level abundance "
+        "profiles can distinguish the two cohorts."
+    )
+
+    information_left, information_middle, information_right = st.columns(3)
+
+    with information_left:
+        st.markdown("### 🧪 Bioinformatics")
+
+        st.write(
+            "Paired-end reads were processed using QIIME2 and DADA2 "
+            "to generate an ASV abundance table."
+        )
+
+    with information_middle:
+        st.markdown("### 🦠 Microbiome analysis")
+
+        st.write(
+            "Taxonomy was assigned using the SILVA database, followed by "
+            "alpha diversity, beta diversity and relative-abundance analysis."
+        )
+
+    with information_right:
+        st.markdown("### 🤖 Machine learning")
+
+        st.write(
+            "Logistic Regression, Random Forest, Gradient Boosting and "
+            "XGBoost were compared. SHAP and LIME were used to explain "
+            "model predictions."
+        )
+
+    st.divider()
+
+    # --------------------------------------------------------
+    # Simple workflow
+    # --------------------------------------------------------
+
+    st.subheader("End-to-end analysis workflow")
 
     st.markdown(
         """
-        **Raw paired-end FASTQ**
-        → **FastQC / MultiQC**
-        → **QIIME2 import**
-        → **DADA2 denoising**
-        → **ASV feature table**
-        → **SILVA taxonomy using consensus VSEARCH**
-        → **Alpha and beta diversity**
-        → **Genus-level relative abundance**
-        → **Machine learning**
-        → **SHAP and LIME**
-        → **Interactive Streamlit dashboard**
+        **Raw FASTQ → Quality control → QIIME2 import → DADA2 denoising  
+        → ASV table → SILVA taxonomy → Alpha and beta diversity  
+        → Relative abundance → Machine learning → SHAP and LIME  
+        → Interactive Streamlit dashboard**
         """
     )
 
-    strategy_left, strategy_right = st.columns(2)
+    st.caption(
+        "The workflow starts with raw sequencing reads and ends with "
+        "interactive biological and machine-learning interpretation."
+    )
 
-    with strategy_left:
+    st.divider()
+
+    # --------------------------------------------------------
+    # Analysis design
+    # --------------------------------------------------------
+
+    st.subheader("Analysis design")
+
+    analysis_left, analysis_right = st.columns(2)
+
+    with analysis_left:
         st.info(
-            "**Analysis 1 — balanced cohort**\n\n"
-            "124 Healthy + 124 randomly selected COPD samples."
+            "### Analysis 1 — Balanced cohort\n\n"
+            "**124 Healthy + 124 COPD samples**\n\n"
+            "This dataset was used to compare machine-learning models "
+            "with equal sample numbers in both disease groups."
         )
 
-    with strategy_right:
+    with analysis_right:
         st.info(
-            "**Analysis 2 — planned full cohort**\n\n"
-            "715 COPD + 124 Healthy using class weighting."
+            "### Analysis 2 — Full cohort\n\n"
+            "**124 Healthy + 715 COPD samples**\n\n"
+            "This analysis will use the complete cohort with class weighting "
+            "and imbalance-aware evaluation metrics."
         )
 
-    st.success(
-        "Serratia was the dominant cohort-discriminating genus and "
-        "alone produced the same classification performance as the "
-        "complete 374-feature model."
+    st.divider()
+
+    # --------------------------------------------------------
+    # Main exploratory observations
+    # --------------------------------------------------------
+
+    st.subheader("Main exploratory observations")
+
+    observation_left, observation_middle, observation_right = st.columns(3)
+
+    with observation_left:
+        st.success(
+            "**Microbial composition**\n\n"
+            "COPD and Healthy samples showed different genus-level "
+            "abundance patterns."
+        )
+
+    with observation_middle:
+        st.success(
+            "**Community diversity**\n\n"
+            "The two cohorts showed strong separation in beta-diversity "
+            "analysis."
+        )
+
+    with observation_right:
+        st.success(
+            "**Explainable machine learning**\n\n"
+            "Serratia, Acinetobacter, Leptotrichia and related genera "
+            "contributed strongly to model discrimination."
+        )
+
+    st.warning(
+        "These genera should currently be described as cohort-discriminating "
+        "features, not as clinically validated COPD biomarkers."
+    )
+
+    st.divider()
+
+    # --------------------------------------------------------
+    # Dashboard navigation information
+    # --------------------------------------------------------
+
+    st.subheader("Explore the dashboard")
+
+    st.markdown(
+        """
+        Use the coloured buttons above to explore:
+
+        **Quality Control** — sequencing depth and DADA2 retention  
+        **Taxonomy** — phylum- and genus-level composition  
+        **Diversity** — alpha diversity, PCoA and PERMANOVA  
+        **ASV Explorer** — searchable ASV abundance and taxonomy  
+        **Models** — performance of machine-learning classifiers  
+        **SHAP** — global and individual XGBoost explanations  
+        **LIME** — local sample-level explanations  
+        **Serratia** — abundance and prevalence analysis  
+        **Limitations** — study design and interpretation cautions
+        """
     )
 
     st.subheader("Download complete results")
 
     st.download_button(
-        label="📦 Download all dashboard figures and tables",
+        label="📦 Download all figures and result tables",
         data=create_results_zip(),
         file_name="COPD_microbiome_dashboard_results.zip",
         mime="application/zip",
