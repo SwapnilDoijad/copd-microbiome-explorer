@@ -919,8 +919,9 @@ st.markdown(
     -------------------------------------------------------- */
 
     .info-card {
-        background: rgba(255, 255, 255, 0.91);
-        border: 1px solid rgba(78, 127, 155, 0.16);
+        background: rgba(30, 36, 48, 0.95);
+        color: #f5f7fa;
+        border: 1px solid rgba(255, 255, 255, 0.12);
         border-radius: 18px;
         padding: 20px 22px;
         min-height: 180px;
